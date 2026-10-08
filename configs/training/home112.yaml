@@ -1,0 +1,21 @@
+command: train
+launcher:
+  processes: 4
+arguments:
+  model: Qwen/Qwen3.5-9B
+  view: behavior_interest
+  label-mode: interest_id
+  train-file: data/amazon/home112/train.parquet
+  label-map: data/amazon/home112/interest_id_semantic_mapping.json
+  output-dir: outputs/supervised_learning/qwen35_9b
+  expected-train-rows: 112000
+  expected-label-count: 112
+  epochs: 1
+  learning-rate: 0.0001
+  max-seq-length: 8192
+  per-device-batch-size: 1
+  gradient-accumulation-steps: 8
+  expected-effective-batch-size: 32
+  gradient-checkpointing: true
+  exclude-vision-lora: true
+  require-qwen-fast-path: true

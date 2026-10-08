@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crossinterest"
+version = "0.1.0"
+description = "Reproducible next-new-interest prediction from behavior and interest histories"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26,<2", "pyarrow>=18,<24", "PyYAML>=6", "safetensors>=0.5"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+train = ["torch==2.8.0", "transformers==5.14.1", "peft==0.18.1", "accelerate==1.12.0", "scipy>=1.14", "scikit-learn>=1.5", "tqdm>=4.66"]
+cuda = ["flash-linear-attention[cuda]==0.5.2", "causal-conv1d==1.7.0"]
+baselines = ["bitsandbytes>=0.45", "scipy>=1.14", "scikit-learn>=1.5", "pandas>=2.2"]
+
+[project.scripts]
+crossinterest = "crossinterest.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/test_public_api.py", "tests/test_repository.py"]
+addopts = "--import-mode=importlib"
+markers = ["integration: requires local datasets or archived experiment contracts"]

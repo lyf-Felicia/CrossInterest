@@ -1,0 +1,18 @@
+command: evaluate
+arguments:
+  model-key: qwen35_9b
+  model: Qwen/Qwen3.5-9B
+  adapter: outputs/supervised_learning/qwen35_9b/final_adapter
+  view: behavior_interest
+  label-mode: interest_id
+  label-map: data/amazon/home112/interest_id_semantic_mapping.json
+  data-dir: data/amazon/home112/eval
+  label-file: data/amazon/home112/train.parquet
+  run-dir: outputs/supervised_learning/qwen35_9b/ranking
+  expected-label-count: 112
+  decoding: direct_beam_search
+  num-beams: 20
+  max-new-tokens: 32
+  max-prompt-length: 8192
+  eval-batch-size: 1
+  device-map: balanced

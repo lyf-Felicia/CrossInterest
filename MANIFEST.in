@@ -1,0 +1,9 @@
+include README.md RESULTS.md CONTRIBUTING.md pyproject.toml
+recursive-include configs *.yaml
+recursive-include docs *.md
+include data/README.md
+include tools/check_repository.py
+prune .local
+prune outputs
+prune checkpoints
+global-exclude *.pyc *.parquet *.safetensors *.jsonl

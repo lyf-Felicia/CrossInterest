@@ -1,0 +1,27 @@
+# Local datasets, checkpoints, credentials, and historical experiment evidence.
+/.local/
+/data/**
+!/data/README.md
+/outputs/
+/checkpoints/
+/.amltconfig
+/.env
+/.env.*
+!/.env.example
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.parquet
+*.jsonl
+*.tar.gz
+*.zip
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv*/
+*.egg-info/
+/build/
+/dist/

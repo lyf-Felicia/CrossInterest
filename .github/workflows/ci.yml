@@ -1,0 +1,20 @@
+name: Repository Checks
+on:
+  push:
+  pull_request:
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e '.[test]'
+      - run: pytest tests/test_public_api.py tests/test_repository.py
+      - run: python tools/check_repository.py
+      - run: crossinterest train --config configs/training/home112.yaml --dry-run
+      - run: crossinterest evaluate --config configs/evaluation/home112.yaml --dry-run
